@@ -1,20 +1,33 @@
 ---
 dependency:
-  name: gilt
+  name: galaxy
 driver:
-  name: docker
+  name: vagrant
+  provider:
+    name: virtualbox
 lint:
   name: yamllint
 platforms:
-  - name: instance-1
-    image: centos:7
+  - name: instance
+    box: ${VAGRANT_DEFAULT_BOX:-generic/rhel7}
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
-scenario:
-  name: default
+  playbooks:
+    converge: ../resources/playbooks/converge.yml
+    cleanup: ../resources/playbooks/cleanup.yml
+  inventory:
+    host_vars:
+      instance:
+        rhsm_repositories:
+          enabled:
+            - rhel-7-server-rpms
+            - rhel-7-server-optional-rpms
+            - rhel-7-server-extras-rpms
+            - rhel-server-rhscl-7-rpms
 verifier:
   name: testinfra
+  directory: ../resources/tests/
   lint:
     name: flake8
