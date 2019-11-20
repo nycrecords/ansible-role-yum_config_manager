@@ -1,0 +1,17 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+molecule = {extras = ["ec2", "vagrant"],version = "*"}
+ansible = "*"
+paramiko = "*"
+
+[packages]
+awscli = "*"
+molecule = {extras = ["ec2"],version = "*"}
+flake8 = "*"
+
+[requires]
+python_version = "3.7"
