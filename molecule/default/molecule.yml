@@ -20,12 +20,7 @@ provisioner:
   inventory:
     host_vars:
       instance:
-        rhsm_repositories:
-          enabled:
-            - rhel-7-server-rpms
-            - rhel-7-server-optional-rpms
-            - rhel-7-server-extras-rpms
-            - rhel-server-rhscl-7-rpms
+        environment: vagrant
 verifier:
   name: testinfra
   directory: ../resources/tests/
