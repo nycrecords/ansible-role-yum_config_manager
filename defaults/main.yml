@@ -1,2 +1,6 @@
 ---
 # defaults file for ansible-role-yum_config_manager
+rhui_config_path: /etc/yum.repos.d
+rhui_config_name: redhat-rhui.repo
+
+repositories: {}

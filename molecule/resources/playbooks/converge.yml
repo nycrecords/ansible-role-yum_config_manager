@@ -1,0 +1,26 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+
+  vars:
+    repositories:
+      enabled:
+        - rhui-REGION-rhel-server-rhscl
+        - rhui-REGION-rhel-server-debug-rhscl
+      disabled: 
+        - rhui-REGION-rhel-server-source-rh-common
+
+  pre_tasks:
+    - name: Copy sample redhat repo file
+      copy:
+        src: ../templates/redhat-rhui.repo
+        dest: /etc/yum.repos.d
+        owner: root
+        group: root
+        mode: '0644'
+        backup: yes
+  
+  roles:
+    - role: ansible-role-yum_config_manager
+
