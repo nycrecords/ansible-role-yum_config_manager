@@ -8,6 +8,7 @@
       enabled:
         - rhui-REGION-rhel-server-rhscl
         - rhui-REGION-rhel-server-debug-rhscl
+        - rhui-REGION-rhel-server-source-rhscl
       disabled: 
         - rhui-REGION-rhel-server-source-rh-common
 
