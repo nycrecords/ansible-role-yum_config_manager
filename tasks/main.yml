@@ -1,2 +1,46 @@
 ---
 # tasks file for ansible-role-yum_config_manager
+# - name: Include only enable specific repos tasks
+#   include_tasks: enable_only.yml
+#   when: "'only' in repositories"
+
+# - name: Include enable / disable repos tasks
+#   include_tasks: enable_disable.yml
+#   when: "'only' not in repositories"
+
+- name: Retrieve Repo Config file
+  fetch:
+    src: "{{ rhui_config_path }}/{{ rhui_config_name }}"
+    dest: tmp/{{ rhui_config_name }}
+    flat: yes
+  register: rhui_config_file
+
+- name: Output repo_config_file
+  script: scripts/redhat-rhui-aws.py {{ rhui_config_file.file }}
+  args:
+    executable: python
+  register: repos
+
+- name: Print all repos
+  debug:
+    msg: "{{ item }}"
+  with_items: 
+    - "{{ repos.stdout_lines }}"
+
+- name: Print repositories
+  debug:
+    msg: "{{ repositories }}"
+
+- name: Disable repositories
+  script: scripts/redhat-rhui-aws.py {{ rhui_config_file.file }} -disable {{ item }}
+  args:
+    executable: python
+  with_items:
+    - "{{ repositories.disabled|default([]) }}"
+
+- name: Enable repositories
+  script: scripts/redhat-rhui-aws.py {{ rhui_config_file.file }} -enable {{ item }}
+  args:
+    executable: python
+  with_items:
+    - "{{ repositories.enabled|default([]) }}"
