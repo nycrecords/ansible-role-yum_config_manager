@@ -58,7 +58,7 @@ Including an example of how to use your role (for instance, with variables passe
       enabled:
         - rhui-REGION-rhel-server-rhscl
         - rhui-REGION-rhel-server-debug-rhscl
-      disabled: 
+      disabled:
         - rhui-REGION-rhel-server-source-rh-common
 ```
 
@@ -70,4 +70,4 @@ Apache-2.0
 Author Information
 ------------------
 
-Joel Castillo ([@joelbcastillo](https://github.com/joelbcastillo)) for the NYC Department of Records Dev Team ([@nycrecords](https://github.com/nycrecords))
+Joel Castillo ([@joelbcastillo](https://github.com/joelbcastillo)) for the NYC Department of Records Dev Team ([@nycrecords](https://github.com/nycrecords)

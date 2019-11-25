@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  name: yum_config_manager
+  role_name: yum_config_manager
   author: Joel Castillo
   description: Role to use yum-config-manager to manage repositories on RHEL.
   company: City of New York, Department of Records and Information Services
