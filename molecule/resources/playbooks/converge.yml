@@ -9,7 +9,7 @@
         - rhui-REGION-rhel-server-rhscl
         - rhui-REGION-rhel-server-debug-rhscl
         - rhui-REGION-rhel-server-source-rhscl
-      disabled: 
+      disabled:
         - rhui-REGION-rhel-server-source-rh-common
 
   pre_tasks:
@@ -21,6 +21,6 @@
         group: root
         mode: '0644'
         backup: yes
-  
+
   roles:
     - role: ansible-role-yum_config_manager

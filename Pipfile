@@ -3,15 +3,17 @@ name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
 
-[dev-packages]
-molecule = {extras = ["ec2", "vagrant"],version = "*"}
-ansible = "*"
-paramiko = "*"
-
 [packages]
 awscli = "*"
-molecule = {extras = ["ec2"],version = "*"}
+molecule = {extras = ["ec2", "vagrant"],version = "==2.22"}
+ansible = "*"
+paramiko = "*"
 flake8 = "*"
+flake8-black = "*"
+flake8-bugbear = "*"
 
 [requires]
 python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true
