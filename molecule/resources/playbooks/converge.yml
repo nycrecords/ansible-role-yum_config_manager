@@ -24,4 +24,3 @@
   
   roles:
     - role: ansible-role-yum_config_manager
-

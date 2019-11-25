@@ -24,7 +24,7 @@
 - name: Print all repos
   debug:
     msg: "{{ item }}"
-  with_items: 
+  with_items:
     - "{{ repos.stdout_lines }}"
 
 - name: Print repositories
