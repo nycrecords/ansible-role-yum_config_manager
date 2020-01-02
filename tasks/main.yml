@@ -15,6 +15,10 @@
     flat: yes
   register: rhui_config_file
 
+- name: debug
+  debug:
+    msg: "{{ rhui_config_file }}"
+
 - name: Output repo_config_file
   script: scripts/redhat-rhui-aws.py {{ rhui_config_file.file }}
   args:

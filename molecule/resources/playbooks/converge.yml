@@ -13,7 +13,7 @@
         - rhui-REGION-rhel-server-source-rh-common
 
   pre_tasks:
-    - name: Copy sample redhat repo file
+    - name: Copy sample redhat repo file 
       copy:
         src: ../templates/redhat-rhui.repo
         dest: /etc/yum.repos.d
