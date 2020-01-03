@@ -8,19 +8,15 @@
 #   include_tasks: enable_disable.yml
 #   when: "'only' not in repositories"
 
-- name: Retrieve Repo Config file
-  fetch:
+- name: Backup repo config file
+  copy:
     src: "{{ rhui_config_path }}/{{ rhui_config_name }}"
-    dest: tmp/{{ rhui_config_name }}
-    flat: yes
-  register: rhui_config_file
-
-- name: debug
-  debug:
-    msg: "{{ rhui_config_file }}"
+    dest: "{{ rhui_config_path }}/{{ rhui_config_name }}.backup"
+    remote_src: yes
+    backup: no
 
 - name: Output repo_config_file
-  script: scripts/redhat-rhui-aws.py {{ rhui_config_file.file }}
+  script: scripts/redhat-rhui-aws.py "{{ rhui_config_path }}/{{ rhui_config_name }}"
   args:
     executable: python
   register: repos
@@ -36,14 +32,14 @@
     msg: "{{ repositories }}"
 
 - name: Disable repositories
-  script: scripts/redhat-rhui-aws.py {{ rhui_config_file.file }} -disable {{ item }}
+  script: scripts/redhat-rhui-aws.py "{{ rhui_config_path }}/{{ rhui_config_name }}" -disable {{ item }}
   args:
     executable: python
   with_items:
     - "{{ repositories.disabled|default([]) }}"
 
 - name: Enable repositories
-  script: scripts/redhat-rhui-aws.py {{ rhui_config_file.file }} -enable {{ item }}
+  script: scripts/redhat-rhui-aws.py "{{ rhui_config_path }}/{{ rhui_config_name }}" -enable {{ item }}
   args:
     executable: python
   with_items:
