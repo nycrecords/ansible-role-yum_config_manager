@@ -18,7 +18,7 @@
 - name: Output repo_config_file
   script: scripts/redhat-rhui-aws.py "{{ rhui_config_path }}/{{ rhui_config_name }}"
   args:
-    executable: python
+    executable: "{{ python_executable }}"
   register: repos
 
 - name: Print all repos
@@ -34,13 +34,13 @@
 - name: Disable repositories
   script: scripts/redhat-rhui-aws.py "{{ rhui_config_path }}/{{ rhui_config_name }}" -disable {{ item }}
   args:
-    executable: python
+    executable: "{{ python_executable }}"
   with_items:
     - "{{ repositories.disabled|default([]) }}"
 
 - name: Enable repositories
   script: scripts/redhat-rhui-aws.py "{{ rhui_config_path }}/{{ rhui_config_name }}" -enable {{ item }}
   args:
-    executable: python
+    executable: "{{ python_executable }}"
   with_items:
     - "{{ repositories.enabled|default([]) }}"
