@@ -4,3 +4,5 @@ rhui_config_path: /etc/yum.repos.d
 rhui_config_name: redhat-rhui.repo
 
 repositories: {}
+
+python_executable: python3
