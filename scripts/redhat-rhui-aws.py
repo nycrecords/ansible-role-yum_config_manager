@@ -4,7 +4,7 @@ import sys
 
 
 def read_config(filename):
-    config = ConfigParser.ConfigParser()
+    config = configparser.ConfigParser()
     with open(filename, "r") as _:
         config.readfp(_)
     return config
